@@ -30,8 +30,9 @@ void read_img(char path[], image* img);
 void write_img(char path[], image img);
 unsigned char read_pixel(image* img, int x, int y);
 void* pad_line(void* args);
-void pad(image* img, image* pimg, int p);
+image* pad(image* img, int p);
 void free_img(image* img);
+image* new_img(int h, int w);
 
 
 
@@ -104,11 +105,8 @@ The function will pad the lines [start, end-1]
     }
 }
 
-void pad(image* img, image* pimg, int p){
-    pimg->h = img->h + 2*p;
-    pimg->w = img->w + 2*p;
-    pimg->c = img->c;
-    pimg->img = malloc(pimg->h*pimg->w * sizeof(unsigned char));
+image* pad(image* img, int p){
+    image* pimg = new_img(img->h + 2*p, img->w + 2*p);
 
     pthread_t thr[N_THR];
     pad_arg args[N_THR];
@@ -129,10 +127,22 @@ void pad(image* img, image* pimg, int p){
 
     for (int i=0; i<N_THR; i++)
         pthread_join(thr[i], NULL); 
+
+    return pimg;
 }
 
 
 void free_img(image* img){
     free(img->img);
     free(img);
+}
+
+
+image* new_img(int h, int w){
+    image* img = malloc(sizeof(image));
+    img->h = h;
+    img->w = w;
+    img->c = 1;
+    img->img = malloc(h*w*sizeof(unsigned char));
+    return img;
 }
