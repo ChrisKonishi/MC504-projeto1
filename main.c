@@ -1,8 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "main.h"
+#include "img_utils.h"
 
+#define N_THREADS 8
 
 /* 
 args:   operation
@@ -35,5 +36,6 @@ int main(int argc, char* arg[]){
 
     write_img(arg[3], *img);
 
+    free(img);
     return 0;
 }
