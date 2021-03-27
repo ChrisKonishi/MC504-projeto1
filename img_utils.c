@@ -12,7 +12,7 @@ Only supports grayscale images
  */
 void read_img(char path[], image* img){
     img->img = stbi_load(path, &img->w, &img->h, &img->c, 0);
-    if (img->c > 0){
+    if (img->c 1 0){
         printf("Only grayscale images allowed\n");
         exit(1);
     }
