@@ -21,11 +21,10 @@ int main(int argc, char* arg[]){
     }
     
     image *img = malloc(sizeof(image));
-    image* padded_img = malloc(sizeof(image));
 
     read_img(arg[2], img);
 
-    pad(img, padded_img, 20);
+    image* padded_img = pad(img, 20);
 
     write_img(arg[3], *padded_img);
 
