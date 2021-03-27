@@ -3,7 +3,7 @@
 
 #include "img_utils.h"
 
-#define N_THREADS 8
+#define N_THR 8 /* number of threads */
 
 /* 
 args:   operation
@@ -21,21 +21,15 @@ int main(int argc, char* arg[]){
     }
     
     image *img = malloc(sizeof(image));
+    image* padded_img = malloc(sizeof(image));
 
     read_img(arg[2], img);
 
-    /* Test: print image, writes black pixels on the main diagonal */
-    for (int i=0; i<img->h; i++){
-        for (int j=0; j<img->w; j++){
-            printf("%d ", read_pixel(img, i, j));
-            if (i==j)
-                write_pixel(img, i, j, 0);
-        }
-        printf("\n");
-    }
+    pad(img, padded_img, 20);
 
-    write_img(arg[3], *img);
+    write_img(arg[3], *padded_img);
 
-    free(img);
+    free_img(img);
+    free_img(padded_img);
     return 0;
 }
