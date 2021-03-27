@@ -3,7 +3,7 @@
 ## Compiling
 
 ~~~bash
-gcc main.c -lm -o app.out
+gcc -pthread main.c -lm -o app.out
 ~~~
 
 ## Executing
