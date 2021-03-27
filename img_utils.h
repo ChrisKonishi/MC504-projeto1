@@ -41,8 +41,21 @@ void write_pixel(image* img, int x, int y, unsigned char val);
 /* 
 pads an image with zeros
 img = original img
-pimg = pointer to store the new image (allocate it first (ex: malloc))
 p = pad size 
     suppose a 512x512 image, if p=2, nimg will be 516x516
+
+returns a pointer to the padded image
  */
-void pad(image* img, image* pimg, int p);
+image* pad(image* img, int p);
+
+/* 
+free an image
+ */
+void free_img(image* img);
+
+
+/* 
+Allocates a new image with height h and width w
+Don't forget to call free_img afterwards!
+ */
+image* new_img(int h, int w);
