@@ -1,8 +1,8 @@
-//
-// Created by gabriel on 03/04/2021.
-//
+#define N_THR 8 /* number of threads */
 
-#ifndef MC504_PROJETO1_SOBEL_H
-#define MC504_PROJETO1_SOBEL_H
+/*
+    Applies sobel filter
+    image* img: the image that the filter will be applied
+ */
+image* sobel(image* img);
 
-#endif //MC504_PROJETO1_SOBEL_H
