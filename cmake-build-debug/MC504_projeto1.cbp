@@ -79,6 +79,12 @@
 		<Unit filename="/home/gabriel/Documentos/Tarefas/Universidade/MC504/MC504-projeto1/main.c">
 			<Option target="MC504_projeto1"/>
 		</Unit>
+		<Unit filename="/home/gabriel/Documentos/Tarefas/Universidade/MC504/MC504-projeto1/sobel.c">
+			<Option target="MC504_projeto1"/>
+		</Unit>
+		<Unit filename="/home/gabriel/Documentos/Tarefas/Universidade/MC504/MC504-projeto1/sobel.h">
+			<Option target="MC504_projeto1"/>
+		</Unit>
 		<Unit filename="/home/gabriel/Documentos/Tarefas/Universidade/MC504/MC504-projeto1/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>

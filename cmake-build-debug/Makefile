@@ -170,6 +170,33 @@ main.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/MC504_projeto1.dir/build.make CMakeFiles/MC504_projeto1.dir/main.c.s
 .PHONY : main.c.s
 
+sobel.o: sobel.c.o
+
+.PHONY : sobel.o
+
+# target to build an object file
+sobel.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MC504_projeto1.dir/build.make CMakeFiles/MC504_projeto1.dir/sobel.c.o
+.PHONY : sobel.c.o
+
+sobel.i: sobel.c.i
+
+.PHONY : sobel.i
+
+# target to preprocess a source file
+sobel.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MC504_projeto1.dir/build.make CMakeFiles/MC504_projeto1.dir/sobel.c.i
+.PHONY : sobel.c.i
+
+sobel.s: sobel.c.s
+
+.PHONY : sobel.s
+
+# target to generate assembly for a file
+sobel.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MC504_projeto1.dir/build.make CMakeFiles/MC504_projeto1.dir/sobel.c.s
+.PHONY : sobel.c.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -182,6 +209,9 @@ help:
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... sobel.o"
+	@echo "... sobel.i"
+	@echo "... sobel.s"
 .PHONY : help
 
 

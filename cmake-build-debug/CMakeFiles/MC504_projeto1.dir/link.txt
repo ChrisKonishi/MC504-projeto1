@@ -1,1 +1,1 @@
-/usr/bin/cc  -pthread -lm -g   CMakeFiles/MC504_projeto1.dir/main.c.o  -o MC504_projeto1 
+/usr/bin/cc -pthread -lm -g   CMakeFiles/MC504_projeto1.dir/main.c.o CMakeFiles/MC504_projeto1.dir/sobel.c.o  -o MC504_projeto1  -lm 
