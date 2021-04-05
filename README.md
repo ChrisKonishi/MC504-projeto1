@@ -3,7 +3,7 @@
 ## Compiling
 
 ~~~bash
-gcc -pthread main.c -lm -o app.out
+gcc -pthread *.c -lm -o app.out -Wall
 ~~~
 
 ## Executing

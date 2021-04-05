@@ -6,6 +6,7 @@
 
 #include "stb_image/stb_image.h"
 #include "stb_image/stb_image_write.h"
+#include "img_utils.h"
 
 #include "img_utils.h"
 
@@ -27,18 +28,8 @@ The function will pad the lines [start, end-1]
     int end;
 } pad_arg;
 
-/*
- void free_img(image* img);
-void read_img(char path[], image* img);
-void write_img(char path[], image img);
-unsigned char read_pixel(image* img, int x, int y);
+
 void* pad_line(void* args);
-image* pad(image* img, int p);
-void free_img(image* img);
-image* new_img(int h, int w);
- */
-
-
 
 /* 
 char path[]: path to the image

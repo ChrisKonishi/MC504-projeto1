@@ -1,3 +1,7 @@
+#ifndef IMG_UTILS_H
+#define IMG_UTILS_H
+
+
 /* 
     Struct storing image data
 */
@@ -6,7 +10,6 @@ typedef struct{
     unsigned char* img; /* pixel values */
 } image;
 
-//#include "img_utils.c"
 
 /* 
 char path[]: path to the image
@@ -59,3 +62,6 @@ Allocates a new image with height h and width w
 Don't forget to call free_img afterwards!
  */
 image* new_img(int h, int w);
+
+
+#endif
