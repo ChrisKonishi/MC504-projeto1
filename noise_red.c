@@ -2,6 +2,7 @@
 #include <pthread.h>
 
 #include "img_utils.h"
+#include "noise_red.h"
 
 #define N_THR 8
 
@@ -82,13 +83,9 @@ ex:
     ./main sobel in.png out.png
 
  */
-int noise_reduction(char argc, char* arg[]){
+image* noise_reduction(image* img){
 
     pthread_t thr[N_THR];
-
-    image *img = malloc(sizeof(image));
-
-    read_img(arg[2], img);
 
     int i;
     int pad_size = 20;
@@ -120,13 +117,9 @@ int noise_reduction(char argc, char* arg[]){
         pthread_join(thr[i], NULL);
     }
 
-    write_img(arg[3], *out_img);
-
-    free_img(img);
     free_img(padded_img);
-    free_img(out_img);
 
-    return 0;
+    return out_img;
 }
 
 /*

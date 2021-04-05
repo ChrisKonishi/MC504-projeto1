@@ -1,3 +1,6 @@
+#ifndef NOISE_RED_H
+#define NOISE_RED_H
+
 /*
 Compare two integers.
 
@@ -6,7 +9,6 @@ const void *b: pointer to the second integer
 
 return: 1 if a > b, -1 if a < b
 */
-#include "noise_red.c"
 
 int compare(const void *a, const void *b);
 
@@ -30,4 +32,6 @@ ex:
     ./main sobel in.png out.png
 
  */
-int noise_reduction(char argc, char* arg[]);
+image* noise_reduction(image* img);
+
+#endif
