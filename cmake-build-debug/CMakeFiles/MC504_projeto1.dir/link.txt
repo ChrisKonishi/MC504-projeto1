@@ -1,1 +1,1 @@
-/usr/bin/cc -pthread -lm -g   CMakeFiles/MC504_projeto1.dir/main.c.o CMakeFiles/MC504_projeto1.dir/sobel.c.o CMakeFiles/MC504_projeto1.dir/img_utils.c.o  -o MC504_projeto1  -lm 
+/usr/bin/cc -pthread -lm -Wall -g   CMakeFiles/MC504_projeto1.dir/main.c.o CMakeFiles/MC504_projeto1.dir/sobel.c.o CMakeFiles/MC504_projeto1.dir/img_utils.c.o  -o MC504_projeto1  -lm -lpthread 
