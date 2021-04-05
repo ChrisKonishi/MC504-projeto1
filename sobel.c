@@ -8,6 +8,7 @@ typedef struct{
     int** Gx;
     int** Gy;
     image* img;
+    image* nImg;
 }sobelArg;
 
 image* sobel(image* img){
@@ -23,11 +24,12 @@ image* sobel(image* img){
     arg->Gy = (int**) Gy;
     nImg = pad(img,1);
     arg->img = nImg;
+    arg->nImg = new_img(img->h,img->w);
 
 }
 
-int** getNeighbor(int x, int y, image* img){
-    int** m = createMatrix(3,3);
+unsigned char ** getNeighbor(int x, int y, image* img){
+    unsigned char** m = createMatrix(3,3);
     if(x < 1 || x > img->h-2 || y < 1 || y < img->w - 2){
         printf("error\n");
         return NULL;
@@ -41,14 +43,14 @@ int** getNeighbor(int x, int y, image* img){
     }
 }
 
-int** createMatrix(int n,int m){
-    int** matrix = (int**) malloc(m*sizeof(int*));
+unsigned char ** createMatrix(int n, int m){
+    unsigned char** matrix = (unsigned char**) malloc(m*sizeof(unsigned char*));
     for(int i = 0; i < m; i++){
-        matrix[i] = (int*) malloc(n*sizeof(int));
+        matrix[i] = (unsigned char*) malloc(n*sizeof(unsigned char));
     }
     return matrix;
 }
-void freeMatrix(int** matrix, int n, int m){
+void freeMatrix(unsigned char **matrix, int n, int m){
     for(int i = 0; i < m; i++){
         free(matrix[i]);
     }

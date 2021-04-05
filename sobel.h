@@ -6,8 +6,8 @@
  */
 image* sobel(image* img);
 
-int** getNeighbor(int x, int y, image* img);
+unsigned char ** getNeighbor(int x, int y, image* img);
 
-int** createMatrix(int n,int m);
+unsigned char ** createMatrix(int n, int m);
 
-void freeMatrix(int** matrix, int n, int m);
+void freeMatrix(unsigned char **matrix, int n, int m);
