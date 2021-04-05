@@ -12,6 +12,11 @@ gcc -pthread *.c -lm -o app.out -Wall
 ./app.out <method> <img_in> <img_out> <optional_args>
 ~~~
 
+### Noise Reduction
+
+~~~bash
+./app.out noise noise_test.png out_noise.png
+~~~
 
 ## Useful definition in img_utils
 
