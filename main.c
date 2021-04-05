@@ -2,6 +2,7 @@
 #include <stdlib.h>
 
 #include "img_utils.h"
+#include "sobel.h"
 
 #define N_THR 8 /* number of threads */
 
@@ -21,14 +22,23 @@ int main(int argc, char* arg[]){
     }
     
     image *img = malloc(sizeof(image));
+    image * sobelImage;
 
     read_img(arg[2], img);
 
-    image* padded_img = pad(img, 20);
+    if (arg[1][0] == '2'){
+        sobelImage = sobel(img);
+    } else{
+        printf("Wrong operation\n");
+    }
 
-    write_img(arg[3], *padded_img);
+    //image* padded_img = pad(img, 20);
+
+    //write_img(arg[3], *padded_img);
+    write_img(arg[3],*sobelImage);
 
     free_img(img);
-    free_img(padded_img);
+    //free_img(padded_img);
+    free_img(sobelImage);
     return 0;
 }

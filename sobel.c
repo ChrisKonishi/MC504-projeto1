@@ -1,30 +1,49 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
+#include <pthread.h>
 
 #include "img_utils.h"
-
 #include "sobel.h"
+
 typedef struct{
-    int** Gx;
-    int** Gy;
+    unsigned char** Gx;
+    unsigned char** Gy;
     image* img;
     image* nImg;
+    int start;
+    int end;
 }sobelArg;
 
 image* sobel(image* img){
-    int Gx[3][3] = {{-1,0,1},
+    unsigned char Gx[3][3] = {{-1,0,1},
                     {-2,0,2},
                     {-1,0,1}},
                     Gy[3][3] = {{1,2,1},
                                 {0,0,0},
                                 {-1,-2,-1}};
-    image* nImg;
-    sobelArg* arg = (sobelArg*) malloc(sizeof(sobelArg));
-    arg->Gx = (int**) Gx;
-    arg->Gy = (int**) Gy;
-    nImg = pad(img,1);
-    arg->img = nImg;
-    arg->nImg = new_img(img->h,img->w);
+    image* nImg = new_img(img->h, img->w);
+    sobelArg arg[N_THR];
+    pthread_t thr[N_THR];
+    int nLines = img->h/N_THR;
+    for (int i = 0; i < N_THR; i++) {
+        arg[i].Gx = (unsigned char **) Gx;
+        arg[i].Gy = (unsigned char **) Gy;
+        nImg = pad(img, 1);
+        arg[i].img = img;
+        arg[i].nImg = nImg;
+        arg[i].start = (nLines*i) + 1;
+        if (i < N_THR - 1){
+            arg[i].end = nLines*(i+1);
+        }else{
+            arg[i].end = img->h - 1;
+        }
+        pthread_create(&thr[i],NULL,sobelLine,(void *) &arg[i]);
+    }
+    for (int i = 0; i < N_THR; i++){
+        pthread_join(thr[i], NULL);
+    }
+    return nImg;
 
 }
 
@@ -55,4 +74,36 @@ void freeMatrix(unsigned char **matrix, int n, int m){
         free(matrix[i]);
     }
     free(matrix);
+}
+
+void* sobelLine(void* args){
+    sobelArg* arg = (sobelArg*) args;
+    unsigned char** Gx = arg->Gx;
+    unsigned char** Gy = arg->Gy;
+    unsigned char** neighbor;
+    unsigned char pixel;
+    for (int i = arg->start; i < arg->end; i++){
+        for (int j = 1; j < arg->img->w-1; j++){
+            neighbor = getNeighbor(j,i,arg->img);
+            if (neighbor){
+                pixel = sobelPixel(Gx, Gy, neighbor);
+            } else{
+                return NULL;
+            }
+            write_pixel(arg->nImg,j,i,pixel);
+            freeMatrix(neighbor,3,3);
+        }
+    }
+}
+
+unsigned char sobelPixel(unsigned char **Gx, unsigned char **Gy, unsigned char **neighbor) {
+    unsigned char v = 0, h = 0, G;
+    for (int i = 0; i < 3; i++){
+        for (int j = 0; j < 3; j++){
+            h += Gx[i][j]*neighbor[i][j];
+            v += Gy[i][j]*neighbor[i][j];
+        }
+    }
+    G = (unsigned char) round(sqrt(pow(h,2)+pow(v,2)));
+    return G;
 }
