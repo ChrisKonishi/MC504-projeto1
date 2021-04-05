@@ -38,6 +38,7 @@ image* sobel(image* img){
         }else{
             arg[i].end = img->h - 1;
         }
+        printf("Cheguei\n");
         pthread_create(&thr[i],NULL,sobelLine,(void *) &arg[i]);
     }
     for (int i = 0; i < N_THR; i++){
@@ -49,6 +50,7 @@ image* sobel(image* img){
 
 unsigned char ** getNeighbor(int x, int y, image* img){
     unsigned char** m = createMatrix(3,3);
+    printf("oi\n");
     if(x < 1 || x > img->h-2 || y < 1 || y < img->w - 2){
         printf("error\n");
         return NULL;

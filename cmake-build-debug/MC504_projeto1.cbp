@@ -76,6 +76,12 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/home/gabriel/Documentos/Tarefas/Universidade/MC504/MC504-projeto1/img_utils.c">
+			<Option target="MC504_projeto1"/>
+		</Unit>
+		<Unit filename="/home/gabriel/Documentos/Tarefas/Universidade/MC504/MC504-projeto1/img_utils.h">
+			<Option target="MC504_projeto1"/>
+		</Unit>
 		<Unit filename="/home/gabriel/Documentos/Tarefas/Universidade/MC504/MC504-projeto1/main.c">
 			<Option target="MC504_projeto1"/>
 		</Unit>

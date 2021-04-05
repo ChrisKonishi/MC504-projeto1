@@ -143,6 +143,33 @@ MC504_projeto1/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/MC504_projeto1.dir/build.make CMakeFiles/MC504_projeto1.dir/build
 .PHONY : MC504_projeto1/fast
 
+img_utils.o: img_utils.c.o
+
+.PHONY : img_utils.o
+
+# target to build an object file
+img_utils.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MC504_projeto1.dir/build.make CMakeFiles/MC504_projeto1.dir/img_utils.c.o
+.PHONY : img_utils.c.o
+
+img_utils.i: img_utils.c.i
+
+.PHONY : img_utils.i
+
+# target to preprocess a source file
+img_utils.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MC504_projeto1.dir/build.make CMakeFiles/MC504_projeto1.dir/img_utils.c.i
+.PHONY : img_utils.c.i
+
+img_utils.s: img_utils.c.s
+
+.PHONY : img_utils.s
+
+# target to generate assembly for a file
+img_utils.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MC504_projeto1.dir/build.make CMakeFiles/MC504_projeto1.dir/img_utils.c.s
+.PHONY : img_utils.c.s
+
 main.o: main.c.o
 
 .PHONY : main.o
@@ -206,6 +233,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... MC504_projeto1"
+	@echo "... img_utils.o"
+	@echo "... img_utils.i"
+	@echo "... img_utils.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

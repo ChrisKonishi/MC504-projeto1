@@ -30,6 +30,7 @@ int main(int argc, char* arg[]){
         sobelImage = sobel(img);
     } else{
         printf("Wrong operation\n");
+        exit(1);
     }
 
     //image* padded_img = pad(img, 20);

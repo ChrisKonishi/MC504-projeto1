@@ -6,7 +6,7 @@ typedef struct{
     unsigned char* img; /* pixel values */
 } image;
 
-#include "img_utils.c"
+//#include "img_utils.c"
 
 /* 
 char path[]: path to the image
