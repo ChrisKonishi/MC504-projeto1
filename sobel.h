@@ -10,8 +10,10 @@ unsigned char ** getNeighbor(int x, int y, image* img);
 
 unsigned char ** createMatrix(int n, int m);
 
-void freeMatrix(unsigned char **matrix, int n, int m);
+void freeMatrix(void **matrix, int n, int m);
 
 void* sobelLine(void* args);
 
-unsigned char sobelPixel(unsigned char **Gx, unsigned char **Gy, unsigned char **neighbor);
+unsigned char sobelPixel(char **Gx, char **Gy, unsigned char **neighbor);
+
+char **createMatrixS(int n, int m);

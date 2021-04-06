@@ -37,7 +37,6 @@ int main(int argc, char* arg[]){
 
     //write_img(arg[3], *padded_img);
     write_img(arg[3],*sobelImage);
-
     free_img(img);
     //free_img(padded_img);
     free_img(sobelImage);

@@ -227,3 +227,51 @@ Parsed C implicit link information from above output:
   implicit fwks: []
 
 
+Determining if the include file pthread.h exists passed with the following output:
+Change Dir: /home/gabriel/Documentos/Tarefas/Universidade/MC504/MC504-projeto1/cmake-build-debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_a7d73/fast && /usr/bin/make  -f CMakeFiles/cmTC_a7d73.dir/build.make CMakeFiles/cmTC_a7d73.dir/build
+make[1]: Entrando no diretório '/home/gabriel/Documentos/Tarefas/Universidade/MC504/MC504-projeto1/cmake-build-debug/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_a7d73.dir/CheckIncludeFile.c.o
+/usr/bin/cc   -pthread -lm -Wall    -std=gnu99 -o CMakeFiles/cmTC_a7d73.dir/CheckIncludeFile.c.o   -c /home/gabriel/Documentos/Tarefas/Universidade/MC504/MC504-projeto1/cmake-build-debug/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+Linking C executable cmTC_a7d73
+/snap/clion/145/bin/cmake/linux/bin/cmake -E cmake_link_script CMakeFiles/cmTC_a7d73.dir/link.txt --verbose=1
+/usr/bin/cc -pthread -lm -Wall     CMakeFiles/cmTC_a7d73.dir/CheckIncludeFile.c.o  -o cmTC_a7d73 
+make[1]: Saindo do diretório '/home/gabriel/Documentos/Tarefas/Universidade/MC504/MC504-projeto1/cmake-build-debug/CMakeFiles/CMakeTmp'
+
+
+
+Performing C SOURCE FILE Test CMAKE_HAVE_LIBC_PTHREAD succeeded with the following output:
+Change Dir: /home/gabriel/Documentos/Tarefas/Universidade/MC504/MC504-projeto1/cmake-build-debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_a2be6/fast && /usr/bin/make  -f CMakeFiles/cmTC_a2be6.dir/build.make CMakeFiles/cmTC_a2be6.dir/build
+make[1]: Entrando no diretório '/home/gabriel/Documentos/Tarefas/Universidade/MC504/MC504-projeto1/cmake-build-debug/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_a2be6.dir/src.c.o
+/usr/bin/cc   -pthread -lm -Wall -DCMAKE_HAVE_LIBC_PTHREAD   -std=gnu99 -o CMakeFiles/cmTC_a2be6.dir/src.c.o   -c /home/gabriel/Documentos/Tarefas/Universidade/MC504/MC504-projeto1/cmake-build-debug/CMakeFiles/CMakeTmp/src.c
+Linking C executable cmTC_a2be6
+/snap/clion/145/bin/cmake/linux/bin/cmake -E cmake_link_script CMakeFiles/cmTC_a2be6.dir/link.txt --verbose=1
+/usr/bin/cc -pthread -lm -Wall -DCMAKE_HAVE_LIBC_PTHREAD    CMakeFiles/cmTC_a2be6.dir/src.c.o  -o cmTC_a2be6 
+make[1]: Saindo do diretório '/home/gabriel/Documentos/Tarefas/Universidade/MC504/MC504-projeto1/cmake-build-debug/CMakeFiles/CMakeTmp'
+
+
+Source file was:
+#include <pthread.h>
+
+void* test_func(void* data)
+{
+  return data;
+}
+
+int main(void)
+{
+  pthread_t thread;
+  pthread_create(&thread, NULL, test_func, NULL);
+  pthread_detach(thread);
+  pthread_cancel(thread);
+  pthread_join(thread, NULL);
+  pthread_atfork(NULL, NULL, NULL);
+  pthread_exit(NULL);
+
+  return 0;
+}
+

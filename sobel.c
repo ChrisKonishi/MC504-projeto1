@@ -7,34 +7,55 @@
 #include "sobel.h"
 
 typedef struct{
-    unsigned char** Gx;
-    unsigned char** Gy;
+    char** Gx;
+    char** Gy;
     image* img;
     image* nImg;
     int start;
     int end;
 }sobelArg;
 
-image* sobel(image* img){
-    unsigned char Gx[3][3] = {{-1,0,1},
+/*{{-1,0,1},
                     {-2,0,2},
                     {-1,0,1}},
                     Gy[3][3] = {{1,2,1},
                                 {0,0,0},
-                                {-1,-2,-1}};
-    image* nImg = new_img(img->h, img->w);
+                                {-1,-2,-1}};*/
+image* sobel(image* img){
+    char** Gx = createMatrixS(3,3);
+    char** Gy = createMatrixS(3,3);
+    Gx[0][0] = -1;
+    Gx[0][1] = 0;
+    Gx[0][2] = 1;
+    Gx[1][0] = -2;
+    Gx[1][1] = 0;
+    Gx[2][2] = 2;
+    Gx[2][0] = -1;
+    Gx[2][1] = 0;
+    Gx[2][2] = 1;
+    Gy[0][0] = 1;
+    Gy[0][1] = 2;
+    Gy[0][2] = 1;
+    Gy[1][0] = 0;
+    Gy[1][1] = 0;
+    Gy[2][2] = 0;
+    Gy[2][0] = -1;
+    Gy[2][1] = -2;
+    Gy[2][2] = -1;
+    image* nImg;
     sobelArg arg[N_THR];
     pthread_t thr[N_THR];
     img = pad(img,1);
+    nImg  = new_img(img->h, img->w);
     int nLines = img->h/N_THR;
     for (int i = 0; i < N_THR; i++) {
-        arg[i].Gx = (unsigned char **) Gx;
-        arg[i].Gy = (unsigned char **) Gy;
+        arg[i].Gx = Gx;
+        arg[i].Gy = Gy;
         arg[i].img = img;
         arg[i].nImg = nImg;
-        arg[i].start = (nLines*i) + 1;
+        arg[i].start = (nLines*i) + 1 ;
         if (i < N_THR - 1){
-            arg[i].end = nLines*(i+1);
+            arg[i].end = nLines*(i+1) + 1;
         }else{
             arg[i].end = img->h - 1;
         }
@@ -43,6 +64,8 @@ image* sobel(image* img){
     for (int i = 0; i < N_THR; i++){
         pthread_join(thr[i], NULL);
     }
+    freeMatrix((void**)Gx,3,3);
+    freeMatrix((void**)Gy,3,3);
     return nImg;
 
 }
@@ -63,6 +86,7 @@ unsigned char ** getNeighbor(int x, int y, image* img){
         printf("error4\n");
         return NULL;
     }else {
+        //printf("Estou aqui\n");
         for (int i = 0, v = -1; i < 3, v < 2; i++, v++){
             for (int j = 0, h = -1; j < 3, h < 2; j++, h++){
                 m[i][j] = read_pixel(img,x+h,y+v);
@@ -79,7 +103,18 @@ unsigned char ** createMatrix(int n, int m){
     }
     return matrix;
 }
-void freeMatrix(unsigned char **matrix, int n, int m){
+
+char **createMatrixS(int n, int m)
+{
+    char **matrix = (char **)malloc(m * sizeof(char *));
+    for (int i = 0; i < m; i++)
+    {
+        matrix[i] = (char *)malloc(n * sizeof(char));
+    }
+    return matrix;
+}
+
+void freeMatrix(void **matrix, int n, int m){
     for(int i = 0; i < m; i++){
         free(matrix[i]);
     }
@@ -88,8 +123,8 @@ void freeMatrix(unsigned char **matrix, int n, int m){
 
 void* sobelLine(void* args){
     sobelArg* arg = (sobelArg*) args;
-    unsigned char** Gx = arg->Gx;
-    unsigned char** Gy = arg->Gy;
+    char** Gx = arg->Gx;
+    char** Gy = arg->Gy;
     unsigned char** neighbor;
     unsigned char pixel;
     for (int i = arg->start; i < arg->end; i++){
@@ -101,19 +136,28 @@ void* sobelLine(void* args){
                 return NULL;
             }
             write_pixel(arg->nImg,j,i,pixel);
-            freeMatrix(neighbor,3,3);
+            freeMatrix((void**)neighbor,3,3);
         }
     }
 }
 
-unsigned char sobelPixel(unsigned char **Gx, unsigned char **Gy, unsigned char **neighbor) {
-    unsigned char v = 0, h = 0, G;
+unsigned char sobelPixel(char **Gx, char **Gy, unsigned char **neighbor) {
+    int v = 0, h = 0,result;
+    unsigned char G;
     for (int i = 0; i < 3; i++){
         for (int j = 0; j < 3; j++){
+            //printf("E eu aqui\n");
             h += Gx[i][j]*neighbor[i][j];
             v += Gy[i][j]*neighbor[i][j];
         }
     }
-    G = (unsigned char) round(sqrt(pow(h,2)+pow(v,2)));
+    result = (int) round(sqrt(pow(h, 2) + pow(v, 2)));
+    if (result > 255){
+        G = 255;
+    } else if (result < 0){
+        G = 0;
+    } else{
+        G = (unsigned char)round(sqrt(pow(h, 2) + pow(v, 2)));
+    }
     return G;
 }
