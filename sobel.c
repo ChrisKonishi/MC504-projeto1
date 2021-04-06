@@ -42,16 +42,16 @@ image* sobel(image* img){
     Gy[2][0] = -1;
     Gy[2][1] = -2;
     Gy[2][2] = -1;
-    image* nImg;
+    image* nImg, *pImg;
     sobelArg arg[N_THR];
     pthread_t thr[N_THR];
-    img = pad(img,1);
+    pImg = pad(img,1);
     nImg  = new_img(img->h, img->w);
     int nLines = img->h/N_THR;
     for (int i = 0; i < N_THR; i++) {
         arg[i].Gx = Gx;
         arg[i].Gy = Gy;
-        arg[i].img = img;
+        arg[i].img = pImg;
         arg[i].nImg = nImg;
         arg[i].start = (nLines*i) + 1 ;
         if (i < N_THR - 1){
@@ -66,6 +66,7 @@ image* sobel(image* img){
     }
     freeMatrix((void**)Gx,3,3);
     freeMatrix((void**)Gy,3,3);
+    free_img(pImg);
     return nImg;
 
 }
