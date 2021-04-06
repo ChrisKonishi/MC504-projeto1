@@ -152,6 +152,14 @@ unsigned char sobelPixel(char **Gx, char **Gy, unsigned char **neighbor) {
             v += Gy[i][j]*neighbor[i][j];
         }
     }
+    if (v < 0)
+        v = 0;
+    else if (v > 255)
+        v = 255;
+    if (h < 0)
+        h = 0;
+    else if (h > 255)
+        h = 255;
     result = (int) round(sqrt(pow(h, 2) + pow(v, 2)));
     if (result > 255){
         G = 255;
