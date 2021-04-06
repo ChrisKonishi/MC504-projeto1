@@ -6,21 +6,6 @@
 #include "img_utils.h"
 #include "sobel.h"
 
-typedef struct{
-    char** Gx;
-    char** Gy;
-    image* img;
-    image* nImg;
-    int start;
-    int end;
-}sobelArg;
-
-/*{{-1,0,1},
-                    {-2,0,2},
-                    {-1,0,1}},
-                    Gy[3][3] = {{1,2,1},
-                                {0,0,0},
-                                {-1,-2,-1}};*/
 image* sobel(image* img){
     char** Gx = createMatrixS(3,3);
     char** Gy = createMatrixS(3,3);
@@ -64,8 +49,8 @@ image* sobel(image* img){
     for (int i = 0; i < N_THR; i++){
         pthread_join(thr[i], NULL);
     }
-    freeMatrix((void**)Gx,3,3);
-    freeMatrix((void**)Gy,3,3);
+    freeMatrix((void **) Gx, 3);
+    freeMatrix((void **) Gy, 3);
     free_img(pImg);
     return nImg;
 
@@ -73,7 +58,6 @@ image* sobel(image* img){
 
 unsigned char ** getNeighbor(int x, int y, image* img){
     unsigned char** m = createMatrix(3,3);
-    //printf("x: %d, y: %d, w: %d, h: %d\n",x,y,img->w,img->h);
     if(x < 1){
         printf("error1\n");
         return NULL;
@@ -87,7 +71,6 @@ unsigned char ** getNeighbor(int x, int y, image* img){
         printf("error4\n");
         return NULL;
     }else {
-        //printf("Estou aqui\n");
         for (int i = 0, v = -1; i < 3, v < 2; i++, v++){
             for (int j = 0, h = -1; j < 3, h < 2; j++, h++){
                 m[i][j] = read_pixel(img,x+h,y+v);
@@ -115,8 +98,8 @@ char **createMatrixS(int n, int m)
     return matrix;
 }
 
-void freeMatrix(void **matrix, int n, int m){
-    for(int i = 0; i < m; i++){
+void freeMatrix(void **matrix, int n) {
+    for(int i = 0; i < n; i++){
         free(matrix[i]);
     }
     free(matrix);
@@ -137,7 +120,7 @@ void* sobelLine(void* args){
                 return NULL;
             }
             write_pixel(arg->nImg,j,i,pixel);
-            freeMatrix((void**)neighbor,3,3);
+            freeMatrix((void **) neighbor, 3);
         }
     }
 }
@@ -147,7 +130,6 @@ unsigned char sobelPixel(char **Gx, char **Gy, unsigned char **neighbor) {
     unsigned char G;
     for (int i = 0; i < 3; i++){
         for (int j = 0; j < 3; j++){
-            //printf("E eu aqui\n");
             h += Gx[i][j]*neighbor[i][j];
             v += Gy[i][j]*neighbor[i][j];
         }

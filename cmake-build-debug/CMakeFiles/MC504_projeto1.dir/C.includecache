@@ -8,6 +8,16 @@
 
 /home/gabriel/Documentos/Tarefas/Universidade/MC504/MC504-projeto1/img_utils.h
 
+/home/gabriel/Documentos/Tarefas/Universidade/MC504/MC504-projeto1/main.c
+stdio.h
+-
+stdlib.h
+-
+img_utils.h
+/home/gabriel/Documentos/Tarefas/Universidade/MC504/MC504-projeto1/img_utils.h
+sobel.h
+/home/gabriel/Documentos/Tarefas/Universidade/MC504/MC504-projeto1/sobel.h
+
 /home/gabriel/Documentos/Tarefas/Universidade/MC504/MC504-projeto1/sobel.c
 stdio.h
 -
