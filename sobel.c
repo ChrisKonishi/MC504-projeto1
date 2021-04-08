@@ -111,6 +111,7 @@ void* sobelLine(void* args){
             freeMatrix((void **) neighbor, 3);
         }
     }
+    return NULL;
 }
 
 unsigned char sobelPixel(char **Gx, char **Gy, unsigned char **neighbor) {

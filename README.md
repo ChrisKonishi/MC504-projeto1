@@ -12,6 +12,8 @@ gcc -pthread *.c -lm -o app.out -Wall
 ./app.out <method> <img_in> <img_out> <optional_args>
 ~~~
 
+Methods: sobel, noise, sauvola
+
 ### Noise Reduction
 
 ~~~bash
