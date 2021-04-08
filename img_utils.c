@@ -96,6 +96,7 @@ The function will pad the lines [start, end-1]
             }
         }
     }
+    return NULL;
 }
 
 image* pad(image* img, int p){

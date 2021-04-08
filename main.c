@@ -4,6 +4,7 @@
 
 #include "img_utils.h"
 #include "noise_red.h"
+#include "sauvola.h"
 
 #define N_THR 8 /* number of threads */
 
@@ -31,6 +32,9 @@ int main(int argc, char* arg[]){
     if (!strcmp(arg[1], "noise")){
         /* Noise reduction */
         out_img = noise_reduction(img);
+    }
+    else if (!strcmp(arg[1], "sauvola")){
+        out_img = apply_sauvola(img, 0.5, 0.05, 15);
     }
     else{
         printf("Method not defined\n");

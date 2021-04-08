@@ -43,7 +43,6 @@ void* reduction_thread(void* args){
     int r, k;
     int count;
     int median, median_array[8];
-    int cpixel;
 
     thread_args* arg = (thread_args*) args;
     image* padded_img = arg->padded_img;
@@ -70,6 +69,7 @@ void* reduction_thread(void* args){
             write_pixel(out_img, i, j, median);
         }
     }
+    return NULL;
 }
 
 /*
