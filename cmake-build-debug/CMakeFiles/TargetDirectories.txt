@@ -1,3 +1,0 @@
-/home/gabriel/Documentos/Tarefas/Universidade/MC504/MC504-projeto1/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/gabriel/Documentos/Tarefas/Universidade/MC504/MC504-projeto1/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/gabriel/Documentos/Tarefas/Universidade/MC504/MC504-projeto1/cmake-build-debug/CMakeFiles/MC504_projeto1.dir

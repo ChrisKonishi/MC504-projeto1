@@ -1,4 +1,0 @@
-/snap/clion/145/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug "-DCMAKE_C_FLAGS=-pthread -lm -Wall" -G "CodeBlocks - Unix Makefiles" /home/gabriel/Documentos/Tarefas/Universidade/MC504/MC504-projeto1
--- Configuring done
--- Generating done
--- Build files have been written to: /home/gabriel/Documentos/Tarefas/Universidade/MC504/MC504-projeto1/cmake-build-debug
