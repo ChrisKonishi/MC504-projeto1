@@ -5,6 +5,7 @@
 #include "img_utils.h"
 #include "noise_red.h"
 #include "sauvola.h"
+#include "sobel.h"
 
 #define N_THR 8 /* number of threads */
 
@@ -36,13 +37,15 @@ int main(int argc, char* arg[]){
     else if (!strcmp(arg[1], "sauvola")){
         out_img = apply_sauvola(img, 0.5, 0.05, 15);
     }
+    else if (!strcmp(arg[1], "sobel")){
+        out_img = sobel(img);
+    }
     else{
         printf("Method not defined\n");
         exit(1);
     }
 
     write_img(arg[3], *out_img);
-
     free_img(img);
     free_img(out_img);
     return 0;

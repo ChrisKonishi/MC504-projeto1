@@ -8,6 +8,8 @@
 #include "stb_image/stb_image_write.h"
 #include "img_utils.h"
 
+#include "img_utils.h"
+
 #define N_THR 8 
 
 /* pad_line args */
