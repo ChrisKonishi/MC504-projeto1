@@ -103,11 +103,11 @@ image* noise_reduction(image* img){
         args[i].x0 = pad_size;
         args[i].xf = out_img->w - pad_size;
         args[i].y0 = i * div;
-        if (i != N_THR){
-            args[i].yf = out_img->h - pad_size;
+        if (i != N_THR - 1){
+            args[i].yf = div*(i+1);
         }
         else{
-            args[i].yf = div*(i+1);
+            args[i].yf = out_img->h - pad_size;
         }
 
         pthread_create(&thr[i], NULL, reduction_thread, (void*) &args[i]);
