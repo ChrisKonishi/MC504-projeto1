@@ -94,7 +94,7 @@ image* noise_reduction(image* img){
 
     thread_args args[N_THR];
 
-    int div = ( (int) out_img->h - pad_size)/N_THR;
+    int div = ( (int) out_img->h - pad_size*2)/N_THR;
     for (i = 0; i < N_THR; i++){
 
         args[i].padded_img = padded_img;
