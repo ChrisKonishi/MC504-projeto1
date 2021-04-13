@@ -34,3 +34,8 @@ Methods: sobel, noise, sauvola
 
 - free_img
 
+## Sauvola method
+
+The sauvola method is implemented in two functions: *apply_sauvola* and *sauvola*. The first is called by the main and arranges the method arguments and creates the p-threads used for parallelism, while the latter makes the necessary calculations and effectively writes the output image.
+
+To use the method, simply follow the instructions given in the *Executing* section. This implementation uses fixed values of *k* and *R*, as well as a neighborhood of 15x15 elements. If you wish to change these arguments, you can tweak the *apply_sauvola* function call, which takes the original image, *R*, *k* and the neighborhood size, respectively.
